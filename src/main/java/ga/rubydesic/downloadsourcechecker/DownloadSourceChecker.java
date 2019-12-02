@@ -18,20 +18,20 @@ import java.util.regex.Pattern;
 public class DownloadSourceChecker {
 
 	private static final Map<Class<?>, String> cache = new HashMap<>();
-	private static final Map<String, List<String>> sourceGroups = new HashMap<>();
+	private final Map<String, List<String>> sourceGroups = new HashMap<>();
 
-	public static void registerSourceGroup(SourceGroup group) {
+	public void registerSourceGroup(SourceGroup group) {
 		registerSourceGroup(group.name, group.sources);
 	}
 
-	public static void registerSourceGroup(String name, List<String> sources) {
+	public void registerSourceGroup(String name, List<String> sources) {
 		sourceGroups.put(name, sources);
 	}
 
 	/**
 	 * Returns the source group of the selected class
 	 */
-	public static CompletableFuture<Optional<String>> getSourceGroup(Class<?> clazz) {
+	public CompletableFuture<Optional<String>> getSourceGroup(Class<?> clazz) {
 		return getReferrer(clazz).thenApply(oRef -> oRef.map(referrer -> {
 			for (Entry<String, List<String>> entry : sourceGroups.entrySet()) {
 				if (entry.getValue().stream().anyMatch(referrer::endsWith)) {
