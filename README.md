@@ -35,3 +35,6 @@ CompletableFuture<Optional<String>> fReferrer =
 String referrer = fReferrer.get().orElse(null);
 ```
 
+## How does it work?
+
+It's very simple and unintrusive. The library figures out the JAR file location (if applicable) and then reads the `Zone.Info` ADS file to find out if a referrer is known. In the future, this method will be extended to parse xattr data as well for MacOS/Linux clients. If the referrer for the download of the JAR file is unable to be found, then the `Optional` will be returned empty. 
