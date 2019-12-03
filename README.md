@@ -2,6 +2,19 @@
 
 This is a simple library designed to allow you to check the source referrer a JAR file was downloaded from. Designed with Minecraft mods in mind but generally useable anywhere.
 
+## Installation
+
+Add this to your dependencies in build.gradle:
+
+```groovy
+repositories {
+    maven { url 'https://jitpack.io' }
+}
+dependencies {
+    compile 'com.github.Rubydesic:VerifiedDownloadSourceChecker:master-SNAPSHOT'
+}
+```
+
 ## Example Usage
 
 Get the referrer group:
